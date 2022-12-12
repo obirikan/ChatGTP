@@ -1,5 +1,7 @@
 import express from 'express'
 const app=express()
+import dotenv from 'dotenv'
+dotenv.config()
 
 //authentication
 import { Configuration, OpenAIApi } from "openai";
@@ -14,10 +16,10 @@ app.use(express.json())
 app.get('/new',async (req,res)=>{
     const response = await openai.createImage({
         prompt: "game of thrones",
-        n: 1,
+        n: 3,
         size: "1024x1024",
       });
-     const  image_url = response.data.data[0].url;
+     const  image_url = response.data;
       res.json(image_url)
 })
 
